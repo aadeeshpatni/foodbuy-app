@@ -4,13 +4,13 @@
     <string name="fb_login_protocol_scheme">fb502988057751522</string>
     <string name="facebook_app_id">502988057751522</string>
     <string name="Google_Maps_Api_Key">AIzaSyDDvlBPIQkAlm5Gf36vvVLHLkd3xUbZPMY</string>
+    <string name="Nav_drawer_open">Open navigation drawer</string>
+    <string name="Nav_drawer_close">Close navigation drawer</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="user_array">
         <item>Customer</item>
         <item>Retailer</item>
         <item>Wholesaler</item>
     </string-array>
-    <string name="Nav_drawer_open">Open navigation drawer</string>
-    <string name="Nav_drawer_close">Close navigation drawer</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
