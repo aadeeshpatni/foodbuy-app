@@ -8,7 +8,7 @@
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="278dp"
+        android:layout_width="348dp"
         android:layout_height="40dp"
         android:background="@drawable/field_selector"
         android:ems="10"
@@ -24,13 +24,13 @@
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="278dp"
+        android:layout_width="318dp"
         android:layout_height="40dp"
         android:background="@drawable/field_selector"
         android:ems="10"
         android:fontFamily="@font/exo_medium"
         android:foregroundTint="@color/colorPrimaryDark"
-        android:inputType="none|textPassword"
+        android:inputType="textPassword"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:textColor="@color/black"
@@ -56,7 +56,7 @@
 
     <EditText
         android:id="@+id/phone"
-        android:layout_width="278dp"
+        android:layout_width="348dp"
         android:layout_height="40dp"
         android:background="@drawable/field_selector"
         android:ems="10"
@@ -174,7 +174,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="32dp"
         android:fontFamily="@font/exo_medium"
         android:text="Name:"
         android:textColor="@color/colorPrimary"
@@ -235,17 +235,17 @@
         android:id="@+id/address_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Address \n"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/exo_medium"
+        android:text="Your Address: \n"
         android:textAlignment="center"
         android:textColor="@color/violet"
         android:textSize="16sp"
-        android:fontFamily="@font/exo_medium"
-        android:layout_marginTop="8dp"
-        android:visibility="gone"
-        tools:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@id/google_location_btn"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/google_location_btn"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/textView10"
@@ -308,14 +308,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="68dp" />
+        app:layout_constraintGuide_begin="32dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="343dp" />
+        app:layout_constraintGuide_end="32dp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/google_location_btn"
@@ -331,6 +331,7 @@
         android:hapticFeedbackEnabled="false"
         android:paddingStart="12dp"
         android:paddingEnd="16dp"
+        android:shadowColor="@color/blue"
         android:text="Get my Location"
         android:textColor="@color/blue"
         android:textSize="16sp"
@@ -368,13 +369,26 @@
         app:tint="@color/white"/>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/status_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/google_location_btn"
         app:layout_constraintStart_toEndOf="@+id/google_location_btn"
         app:layout_constraintTop_toTopOf="@+id/google_location_btn"
-        app:srcCompat="@drawable/not_connected" />
+        app:srcCompat="@drawable/not_connected"
+        tools:srcCompat="@drawable/connected" />
+
+    <ImageView
+        android:id="@+id/visible_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:clickable="true"
+        android:onClick="showHidePass"
+        app:layout_constraintBottom_toBottomOf="@+id/password"
+        app:layout_constraintStart_toEndOf="@+id/password"
+        app:layout_constraintTop_toTopOf="@+id/password"
+        app:srcCompat="@drawable/ic_baseline_visibility_off_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

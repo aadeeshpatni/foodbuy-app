@@ -39,7 +39,6 @@ public class OtpActivity extends AppCompatActivity {
     // string for storing our verification ID
     private String verificationId;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +54,9 @@ public class OtpActivity extends AppCompatActivity {
         verifyOTPBtn = findViewById(R.id.idBtnVerify);
         generateOTPBtn = findViewById(R.id.idBtnGetOtp);
 
-        // setting onclick listner for generate OTP button.
+        Intent intent = getIntent();
+        edtPhone.setText(intent.getStringExtra("phone"));
+        // setting onclick listener for generate OTP button.
         generateOTPBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +108,7 @@ public class OtpActivity extends AppCompatActivity {
                             // if the code is correct and the task is successful
                             // we are sending our user to new activity.
                             Intent i = new Intent(OtpActivity.this, MainActivity.class);
+
                             startActivity(i);
                             finish();
                         } else {

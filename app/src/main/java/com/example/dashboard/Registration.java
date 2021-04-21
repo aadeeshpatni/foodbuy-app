@@ -5,9 +5,13 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -40,14 +44,14 @@ public class Registration extends AppCompatActivity{
     private static final int ERROR_DIALOG_REQUEST = 9001;
 
     private TextView name_text, mail_text, storename_head, addressText;
-    private EditText storeName, userName, street, city, state, pincode, phone;
+    private EditText storeName, userName, street, city, state, pincode, phone, password;
     private String userType = "Customer";
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private FloatingActionButton doneButton;
     private AppCompatButton googleLocationButton;
     private ProgressDialog progressDialog;
-
+    private ImageView status_img, visible_password;
     private String addressString;
     private Double longitude, latitude;
     @Override
@@ -68,6 +72,10 @@ public class Registration extends AppCompatActivity{
 
         progressDialog = new ProgressDialog(Registration.this);
         progressDialog.setMessage("Registering...");
+
+        password = findViewById(R.id.password);
+        status_img = findViewById(R.id.status_img);
+        visible_password = findViewById(R.id.visible_password);
 
         int loginOption = LoginPage.signInOption;
         if(loginOption == 2) {
@@ -98,7 +106,6 @@ public class Registration extends AppCompatActivity{
             }
         }
 
-
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +117,6 @@ public class Registration extends AppCompatActivity{
             init();
         }
     }
-
 
     private void init() {
         googleLocationButton.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +138,7 @@ public class Registration extends AppCompatActivity{
         if(resultCode == Activity.RESULT_OK && data != null) {
             Bundle extras = data.getExtras();
             if(extras != null) {
+                status_img.setImageResource(R.drawable.connected);
                 addressString = extras.getString(LOCATION_MESSAGE, "Can not find address");
                 longitude = extras.getDouble("longitude", 0);
                 latitude = extras.getDouble("latitude", 0);
@@ -208,6 +215,7 @@ public class Registration extends AppCompatActivity{
                     Intent intent = new Intent(Registration.this, OtpActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("phone", phone.getText().toString());
                     startActivity(intent);
                 }
             }
@@ -219,5 +227,21 @@ public class Registration extends AppCompatActivity{
                 Toast.makeText(Registration.this, "Error adding user", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void showHidePass(View view){
+
+        if(view.getId()==R.id.visible_password){
+            if (password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+                //Show Password
+                visible_password.setImageResource(R.drawable.ic_baseline_visibility_24);
+                password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+                //Hide Password
+                visible_password.setImageResource(R.drawable.ic_baseline_visibility_off_24);
+                password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
+            password.setSelection(password.getText().length());
+        }
     }
 }

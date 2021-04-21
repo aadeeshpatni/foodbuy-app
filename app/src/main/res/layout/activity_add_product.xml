@@ -68,7 +68,7 @@
             android:layout_marginEnd="6dp"
             android:fontFamily="@font/exo_semibold"
             android:text="Name"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/violet"
             android:textSize="16sp" />
 
         <EditText
@@ -103,7 +103,7 @@
             android:layout_marginEnd="6dp"
             android:fontFamily="@font/exo_semibold"
             android:text="Price"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/violet"
             android:textSize="16sp" />
 
         <EditText
@@ -139,7 +139,7 @@
             android:layout_marginEnd="6dp"
             android:fontFamily="@font/exo_semibold"
             android:text="Quantity"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/violet"
             android:textSize="16sp" />
 
         <EditText
@@ -175,7 +175,7 @@
             android:layout_marginEnd="6dp"
             android:fontFamily="@font/exo_semibold"
             android:text="Unit"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/violet"
             android:textSize="16sp" />
 
         <EditText
@@ -201,7 +201,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/exo_bold"
         android:text="+ Add Product Description"
-        android:textColor="@color/purple_200"
+        android:textColor="@color/magenta"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -226,7 +226,7 @@
             android:layout_marginEnd="6dp"
             android:fontFamily="@font/exo_semibold"
             android:text="Type"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/violet"
             android:textSize="16sp" />
 
         <EditText
@@ -263,7 +263,7 @@
             android:layout_marginEnd="6dp"
             android:fontFamily="@font/exo_semibold"
             android:text="Subtype"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/violet"
             android:textSize="16sp" />
 
         <EditText
@@ -300,7 +300,7 @@
             android:layout_marginEnd="6dp"
             android:fontFamily="@font/exo_semibold"
             android:text="Description"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/violet"
             android:textSize="16sp" />
 
         <EditText
@@ -337,7 +337,7 @@
             android:layout_marginEnd="6dp"
             android:fontFamily="@font/exo_semibold"
             android:text="Image link"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/violet"
             android:textSize="16sp" />
 
         <EditText

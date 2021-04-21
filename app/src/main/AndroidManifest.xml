@@ -20,14 +20,19 @@
             android:value="AIzaSyDDvlBPIQkAlm5Gf36vvVLHLkd3xUbZPMY"/>
 
         <activity android:name=".Registration"
-            android:theme="@style/Theme.Nav_Activity.NoActionBar"/>
+            android:theme="@style/Theme.Nav_Activity.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".LoginPage"
             android:theme="@style/Theme.Nav_Activity.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 <!--        Facebook login activity begin   -->
         <meta-data android:name="com.facebook.sdk.ApplicationId"
@@ -64,8 +69,10 @@
         <activity android:name=".ProductActivity"
             android:theme="@style/Theme.Nav_Activity.NoActionBar"/>
 
-        <activity android:name=".MapActivity"/>
-        <activity android:name=".OtpActivity"/>
+        <activity android:name=".MapActivity"
+            android:theme="@style/Theme.Nav_Activity.NoActionBar"/>
+        <activity android:name=".OtpActivity"
+            android:theme="@style/Theme.Nav_Activity.NoActionBar"/>
     </application>
 
 
