@@ -75,6 +75,8 @@
         <activity
             android:name=".OtpActivity"
             android:theme="@style/Theme.Nav_Activity.NoActionBar" />
+        <activity android:name=".FeedbackActivity"/>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDDvlBPIQkAlm5Gf36vvVLHLkd3xUbZPMY" />

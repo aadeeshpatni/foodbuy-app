@@ -47,6 +47,10 @@ public class Product {
     @SerializedName("sellerType")
     public String sellerType;
 
+    @ColumnInfo(name = "imageUrl")
+    @SerializedName("imageUrl")
+    public String imageUrl;
+
     @Embedded
     @SerializedName("description")
     public ProductDescription description;
@@ -55,7 +59,7 @@ public class Product {
     @SerializedName("seller")
     public User seller;
 
-    public Product(int localId, String _id, String name, Float price, Float addedQuantity, String unit, String sellerType, ProductDescription description, User seller){
+    public Product(int localId, String _id, String name, Float price, Float addedQuantity, String unit, String sellerType, String imageUrl, ProductDescription description, User seller){
         this.localId = localId;
         this._id = _id;
         this.name = name;
@@ -68,7 +72,7 @@ public class Product {
     }
 
     @Ignore
-    public Product(String name, Float price, Float quantity, String unit, String sellerType, ProductDescription description, User seller) {
+    public Product(String name, Float price, Float quantity, String unit, String sellerType, String imageUrl, ProductDescription description, User seller) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;

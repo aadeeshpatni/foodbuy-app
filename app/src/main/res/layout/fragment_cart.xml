@@ -8,8 +8,8 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/fragment_cart_toolbar"
-        android:layout_width="411dp"
-        android:layout_height="79dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -21,13 +21,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp">
+            >
 
             <TextView
                 android:id="@+id/title_text_fragment_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_shopping_cart_nav"
                 android:text="Shopping Cart"
                 android:textColor="@color/white"
                 android:textSize="22sp"

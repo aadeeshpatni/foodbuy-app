@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/feedback_card_rating"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="⭐"
         android:textSize="16sp"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="16sp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         />
 
 </LinearLayout>

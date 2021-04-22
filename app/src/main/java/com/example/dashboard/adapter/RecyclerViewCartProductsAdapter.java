@@ -94,10 +94,19 @@ public class RecyclerViewCartProductsAdapter extends RecyclerView.Adapter<Recycl
 
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttp3Downloader(context));
-        builder.build().load("https://homepages.cae.wisc.edu/~ece533/images/fruits.png")
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
-                .into(holder.productImage);
+        if(productList.get(position).imageUrl != null) {
+            builder.build().load(productList.get(position).imageUrl)
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .error(R.drawable.ic_launcher_background)
+                    .into(holder.productImage);
+        }
+        else {
+            builder.build().load("https://homepages.cae.wisc.edu/~ece533/images/fruits.png")
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .error(R.drawable.ic_launcher_background)
+                    .into(holder.productImage);
+        }
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

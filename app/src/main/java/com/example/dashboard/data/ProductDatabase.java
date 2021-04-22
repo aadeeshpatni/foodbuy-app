@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.dashboard.model.Product;
 
-@Database(entities = Product.class, exportSchema = false, version = 1)
+@Database(entities = Product.class, exportSchema = false, version = 2)
 public abstract class ProductDatabase extends RoomDatabase {
     private static final String DB_NAME = "cartDB";
     private static ProductDatabase instance;
