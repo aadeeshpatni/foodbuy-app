@@ -1,11 +1,14 @@
 
+
 package com.example.dashboard;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +61,7 @@ public class LoginPage extends AppCompatActivity {
     private static final String TAG = "FacebookAuthentication";
     private AccessTokenTracker accessTokenTracker;
     private static final int RC_SIGN_IN=123;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,11 +84,15 @@ public class LoginPage extends AppCompatActivity {
         }
         AppEventsLogger.activateApp(this);
 
+        progressBar = findViewById(R.id.progress_bar);
+
         mAuth = FirebaseAuth.getInstance();
         custom_fb_btn = findViewById(R.id.custom_fb_btn);
         custom_fb_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
+
                 LoginManager.getInstance().logInWithReadPermissions(LoginPage.this, Arrays.asList("email", "public_profile"));
                 LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
                     @Override
@@ -130,6 +138,7 @@ public class LoginPage extends AppCompatActivity {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
                 signIn();
                 signInOption = 1;
             }
@@ -138,7 +147,22 @@ public class LoginPage extends AppCompatActivity {
         click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LoginPage.this, "click", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginPage.this, "Opening default Email client", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                String uriText = "mailto:" + Uri.encode("f20180605@hyderabad.bits-pilani.ac.in") +
+                        "?subject=" + Uri.encode("Trouble logging in") +
+                        "&body=" + Uri.encode("");
+                Uri uri = Uri.parse(uriText);
+
+                intent.setData(uri);
+                try {
+                    startActivity(Intent.createChooser(intent, "Send Email"));
+                }catch(android.content.ActivityNotFoundException e) {
+                    Toast.makeText(LoginPage.this,
+                            "There are no email clients installed.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

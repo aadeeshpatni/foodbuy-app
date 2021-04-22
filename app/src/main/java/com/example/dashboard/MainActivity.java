@@ -1,9 +1,13 @@
 package com.example.dashboard;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -23,6 +27,7 @@ import com.example.dashboard.fragment.YourOrderFragment;
 import com.example.dashboard.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -62,6 +67,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        userEmailText = findViewById(R.id.email_user);
         userNameText.setText(currentUser.name);
         userEmailText.setText(currentUser.email);
+
+        Button contact_us = findViewById(R.id.contact_us);
+        contact_us.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Opening default Email client", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                String uriText = "mailto:" + Uri.encode("f20180605@hyderabad.bits-pilani.ac.in") +
+                        "?subject=" + Uri.encode("") +
+                        "&body=" + Uri.encode("");
+                Uri uri = Uri.parse(uriText);
+
+                intent.setData(uri);
+                try {
+                    startActivity(Intent.createChooser(intent, "Send Email"));
+                }catch(android.content.ActivityNotFoundException e) {
+                    Toast.makeText(MainActivity.this,
+                            "There are no email clients installed.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
     }
@@ -106,6 +134,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_address_book:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddressBookFragment()).commit();
+                break;
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(), LoginPage.class);
+                startActivity(intent);
                 break;
         }
 

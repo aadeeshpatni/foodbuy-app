@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_200">
+    android:background="@color/white">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Categories_fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+    <Button
+        android:id="@+id/fruits"
+        android:layout_width="140dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="250dp"
+        android:backgroundTint="@color/magenta"
+        android:drawableBottom="@drawable/ic_shopping_cart_nav_white"
+        android:elevation="10dp"
+        android:fontFamily="@font/exo_bold"
+        android:text="Fruits"
+        android:textSize="14sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/your_orders"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/cereals"
+        android:layout_width="140dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/violet"
+        android:drawableBottom="@drawable/ic_shopping_cart_nav_white"
+        android:elevation="10dp"
+        android:fontFamily="@font/exo_bold"
+        android:text="Cereals"
+        android:textSize="14sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintStart_toStartOf="@+id/fruits"
+        app:layout_constraintTop_toBottomOf="@+id/fruits" />
+
+    <Button
+        android:id="@+id/beverages"
+        android:layout_width="140dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/violet"
+        android:drawableBottom="@drawable/ic_shopping_cart_nav_white"
+        android:elevation="10dp"
+        android:fontFamily="@font/exo_bold"
+        android:text="Beverages"
+        android:textSize="14sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/vegetables"
+        app:layout_constraintTop_toBottomOf="@+id/vegetables" />
+
+    <Button
+        android:id="@+id/vegetables"
+        android:layout_width="140dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="32dp"
+        android:backgroundTint="@color/magenta"
+        android:drawableBottom="@drawable/ic_shopping_cart_nav_white"
+        android:elevation="10dp"
+        android:fontFamily="@font/exo_bold"
+        android:text="Vegetables"
+        android:textSize="14sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintStart_toEndOf="@+id/fruits"
+        app:layout_constraintTop_toTopOf="@+id/fruits" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
