@@ -3,11 +3,17 @@ package com.example.dashboard.model.order;
 import com.google.gson.annotations.SerializedName;
 
 public class OrderDetails {
+    @SerializedName("_id")
+    public String _id;
+
     @SerializedName("buyerId")
     public String buyerId;
 
     @SerializedName("productId")
     public String productId;
+
+    @SerializedName("sellerId")
+    public String sellerId;
 
     @SerializedName("orderedQuantity")
     public Float orderedQuantity;
@@ -26,6 +32,7 @@ public class OrderDetails {
 
     public OrderDetails(String buyerId,
                         String productId,
+                        String sellerId,
                         Float orderedQuantity,
                         Long orderPlacedTimeInMillis,
                         Float cost,
@@ -33,6 +40,7 @@ public class OrderDetails {
                         OrderDispatchDetails delivery) {
         this.buyerId = buyerId;
         this.productId = productId;
+        this.sellerId = sellerId;
         this.orderedQuantity = orderedQuantity;
         this.orderPlacedTimeInMillis = orderPlacedTimeInMillis;
         this.cost = cost;

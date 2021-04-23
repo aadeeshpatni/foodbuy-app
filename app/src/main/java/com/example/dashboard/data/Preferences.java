@@ -62,4 +62,8 @@ public class Preferences {
     public User getCurrentUser() {
         return currentUser;
     }
+
+    public void logoutCurrentUser() {
+        currentUser = null;
+    }
 }

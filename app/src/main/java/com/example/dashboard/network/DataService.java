@@ -10,6 +10,7 @@ import com.example.dashboard.model.feedback.FeedbackGetResponse;
 import com.example.dashboard.model.feedback.FeedbackPostResponse;
 import com.example.dashboard.model.order.OrderRequest;
 import com.example.dashboard.model.order.OrderResponse;
+import com.example.dashboard.model.order.OrderUpdateResponse;
 import com.example.dashboard.model.order.UserOrdersResponse;
 
 import retrofit2.Call;
@@ -64,4 +65,12 @@ public interface DataService {
     @Headers("Content-Type: application/json")
     @POST("/feedback")
     Call<FeedbackPostResponse> postFeedback(@Body Feedback feedback);
+
+    @GET("/orders/seller")
+    Call<UserOrdersResponse> getOrdersPlacedToYou(@Query("sellerId") String sellerId);
+
+    @POST("/orders")
+    Call<OrderUpdateResponse> updateOrder(@Query("markDispatched") Boolean markDispatched,
+                                          @Query("markDelivered") Boolean markDelivered,
+                                          @Query("orderId") String orderId);
 }

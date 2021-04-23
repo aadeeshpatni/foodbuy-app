@@ -9,12 +9,16 @@ public class OrderRequest {
     @SerializedName("productId")
     public String productId;
 
+    @SerializedName("sellerId")
+    public String sellerId;
+
     @SerializedName("productQuantity")
     public Float productQuantity;
 
-    public OrderRequest(String buyerId, String productId, Float productQuantity) {
+    public OrderRequest(String buyerId, String productId, String sellerId, Float productQuantity) {
         this.buyerId = buyerId;
         this.productId = productId;
+        this.sellerId = sellerId;
         this.productQuantity = productQuantity;
     }
 }

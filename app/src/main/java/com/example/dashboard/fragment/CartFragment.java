@@ -143,7 +143,7 @@ public class CartFragment extends Fragment {
         for(Product product: productList) {
             progressDialog.show();
             Log.e("CartFragment.java", "placeCartOrder: " + currentUser._id);
-            OrderRequest orderRequest = new OrderRequest(currentUser._id, product._id, product.addedQuantity);
+            OrderRequest orderRequest = new OrderRequest(currentUser._id, product._id, product.seller._id, product.addedQuantity);
             Call<OrderResponse> call = service.placeOrder(orderRequest);
 
             call.enqueue(new Callback<OrderResponse>() {

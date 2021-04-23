@@ -3,6 +3,7 @@ package com.example.dashboard.fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +13,33 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dashboard.AddProductActivity;
 import com.example.dashboard.MainActivity;
 import com.example.dashboard.R;
+import com.example.dashboard.adapter.RecyclerViewHomeAdapter;
 import com.example.dashboard.data.Preferences;
+import com.example.dashboard.model.Product;
+import com.example.dashboard.model.order.OrderDetails;
+import com.example.dashboard.model.order.UserOrdersResponse;
+import com.example.dashboard.network.DataService;
+import com.example.dashboard.network.RetrofitClientInstance;
 import com.google.android.material.button.MaterialButton;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
     MaterialButton addProductButton;
     Button contactUsButton, storesNearYou, yourOrders;
+
+    RecyclerView recyclerView;
+    RecyclerViewHomeAdapter recyclerViewHomeAdapter;
 
     @Nullable
     @Override
@@ -43,6 +61,10 @@ public class HomeFragment extends Fragment {
         else if(preferences.getCurrentUser().userType.equals("wholesaler")) {
             storesNearYou.setVisibility(View.INVISIBLE);
             yourOrders.setVisibility(View.INVISIBLE);
+            getOrdersPlacedToUser(preferences.getCurrentUser()._id);
+        }
+        else {
+            getOrdersPlacedToUser(preferences.getCurrentUser()._id);
         }
 
         addProductButton.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +108,44 @@ public class HomeFragment extends Fragment {
                         .commit();
             }
         });
+    }
 
+
+    private void getOrdersPlacedToUser(String sellerId) {
+        DataService service = RetrofitClientInstance.getRetrofitInstance().create(DataService.class);
+
+        Call<UserOrdersResponse> call = service.getOrdersPlacedToYou(sellerId);
+
+        call.enqueue(new Callback<UserOrdersResponse>() {
+            @Override
+            public void onResponse(Call<UserOrdersResponse> call, Response<UserOrdersResponse> response) {
+                if(response.body().error) {
+                    Log.e("HomeFragment", "onResponse: " + response.body().message);
+                    Toast.makeText(getActivity(), "Error getting orders placed to you.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if(response.body().orders != null && response.body().products != null)
+                        generateOrderList(response.body().orders, response.body().products);
+                    else
+                        Toast.makeText(getActivity(), "You have no orders placed to you.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserOrdersResponse> call, Throwable t) {
+                Log.e("HomeFragment", "onFailure: " + t.getMessage());
+                Toast.makeText(getActivity(), "Error getting orders placed to you.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void generateOrderList(List<OrderDetails> orderList, List<Product> productList) {
+        recyclerView = getView().findViewById(R.id.fragment_home_recycler_view);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerViewHomeAdapter = new RecyclerViewHomeAdapter(getContext(), orderList, productList);
+        recyclerView.setAdapter(recyclerViewHomeAdapter);
     }
 }

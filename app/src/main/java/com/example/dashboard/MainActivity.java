@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                break;
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
+                Preferences.getPreferences(getApplicationContext()).logoutCurrentUser();
                 Intent intent = new Intent(getApplicationContext(), Welcome.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
