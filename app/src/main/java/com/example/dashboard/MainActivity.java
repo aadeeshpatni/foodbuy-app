@@ -60,11 +60,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Preferences preferences = Preferences.getPreferences(getApplicationContext());
         User currentUser = preferences.getCurrentUser();
 
+        if(currentUser.userType.equals("wholesaler")) {
+            bottomNavigationView.getMenu().removeItem(R.id.nav_categories);
+            bottomNavigationView.getMenu().removeItem(R.id.nav_cart);
+            bottomNavigationView.getMenu().removeItem(R.id.nav_search);
+
+            navigationView.getMenu().removeItem(R.id.nav_your_orders);
+        }
+        else if(currentUser.userType.equals("customer")) {
+
+        }
+
         headerLayout = navigationView.getHeaderView(0);
         userNameText = headerLayout.findViewById(R.id.name_user);
         userEmailText = headerLayout.findViewById(R.id.email_user);
-//        userNameText = findViewById(R.id.name_user);
-//        userEmailText = findViewById(R.id.email_user);
         userNameText.setText(currentUser.name);
         userEmailText.setText(currentUser.email);
 
@@ -109,12 +118,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_your_orders:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new YourOrderFragment()).commit();
                 break;
-            case R.id.nav_address_book:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddressBookFragment()).commit();
-                break;
+//            case R.id.nav_address_book:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddressBookFragment()).commit();
+//                break;
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getApplicationContext(), Welcome.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 break;
         }

@@ -21,7 +21,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class HomeFragment extends Fragment {
     MaterialButton addProductButton;
-    Button contactUsButton;
+    Button contactUsButton, storesNearYou, yourOrders;
 
     @Nullable
     @Override
@@ -32,10 +32,17 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         addProductButton = getView().findViewById(R.id.fragment_home_add_product_button);
+        contactUsButton = getView().findViewById(R.id.contact_us);
+        storesNearYou = getView().findViewById(R.id.stores_near_you);
+        yourOrders = getView().findViewById(R.id.your_orders);
 
         Preferences preferences = Preferences.getPreferences(getActivity().getApplicationContext());
         if(preferences.getCurrentUser().userType.equals("customer")) {
             addProductButton.setVisibility(View.GONE);
+        }
+        else if(preferences.getCurrentUser().userType.equals("wholesaler")) {
+            storesNearYou.setVisibility(View.INVISIBLE);
+            yourOrders.setVisibility(View.INVISIBLE);
         }
 
         addProductButton.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +53,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        contactUsButton = getView().findViewById(R.id.contact_us);
+
         contactUsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,5 +75,17 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
+        yourOrders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                YourOrderFragment yourOrderFragment = new YourOrderFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, yourOrderFragment, "HomeFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
     }
 }

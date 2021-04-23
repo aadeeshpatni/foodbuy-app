@@ -9,17 +9,20 @@
     <item
         android:id="@+id/nav_categories"
         android:icon="@drawable/ic_categories_nav"
-        android:title="Categories" />
+        android:title="Categories"
+        android:visible="true"/>
 
     <item
         android:id="@+id/nav_search"
         android:icon="@drawable/ic_search_nav"
-        android:title="Search" />
+        android:title="Search"
+        android:visible="true"/>
 
     <item
         android:id="@+id/nav_cart"
         android:icon="@drawable/ic_shopping_cart_nav"
-        android:title="Cart" />
+        android:title="Cart"
+        android:visible="true"/>
 
 
 </menu>
