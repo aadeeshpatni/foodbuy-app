@@ -107,7 +107,7 @@ public class RecyclerViewCustomAdapter extends RecyclerView.Adapter<RecyclerView
 
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttp3Downloader(context));
-        if(productList.get(position).imageUrl != null) {
+        if(productList.get(position).imageUrl != null && productList.get(position).imageUrl.length() != 0) {
             builder.build().load(productList.get(position).imageUrl)
                     .placeholder(R.drawable.ic_launcher_background)
                     .error(R.drawable.ic_launcher_background)

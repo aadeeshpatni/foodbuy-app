@@ -120,7 +120,7 @@ public class ProductActivity extends AppCompatActivity{
 
         Picasso.Builder builder = new Picasso.Builder(ProductActivity.this);
         builder.downloader(new OkHttp3Downloader(ProductActivity.this));
-        if(product.imageUrl != null) {
+        if(product.imageUrl != null && product.imageUrl.length() != 0) {
             builder.build().load(product.imageUrl)
                     .placeholder(R.drawable.ic_categories_nav)
                     .error(R.drawable.ic_categories_nav)
