@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,6 +40,8 @@ public class OtpActivity extends AppCompatActivity {
     // string for storing our verification ID
     private String verificationId;
 
+    private TextView skipButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,16 @@ public class OtpActivity extends AppCompatActivity {
         edtOTP = findViewById(R.id.idEdtOtp);
         verifyOTPBtn = findViewById(R.id.idBtnVerify);
         generateOTPBtn = findViewById(R.id.idBtnGetOtp);
+        skipButton = findViewById(R.id.skip_otp_for_testing);
+
+        skipButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(OtpActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         Intent intent = getIntent();
         edtPhone.setText(intent.getStringExtra("phone"));
