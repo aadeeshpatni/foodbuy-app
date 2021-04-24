@@ -72,32 +72,36 @@ public class RecyclerViewOrdersAdapter extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewOrdersViewHolder holder, int position) {
-        if(productList.size() > position)
+        if(productList.size() > position) {
             holder.orderCardName.setText(productList.get(position).name);
+            Picasso.Builder builder = new Picasso.Builder(context);
+            builder.downloader(new OkHttp3Downloader(context));
+            if(productList.get(position).imageUrl != null) {
+                builder.build().load(productList.get(position).imageUrl)
+                        .placeholder(R.drawable.ic_categories_nav)
+                        .error(R.drawable.ic_launcher_background)
+                        .into(holder.orderCardImage);
+            }
+            else {
+                builder.build().load("https://homepages.cae.wisc.edu/~ece533/images/fruits.png")
+                        .placeholder(R.drawable.ic_categories_nav)
+                        .error(R.drawable.ic_launcher_background)
+                        .into(holder.orderCardImage);
+            }
+        }
 
-        if(orderList.get(position) != null && orderList.get(position).dispatch != null) {
+        if(orderList.get(position) != null && orderList.get(position).dispatch != null && orderList.get(position).delivery != null) {
             if(orderList.get(position).dispatch.isDispatched) {
                 holder.orderCardTracker.setText("Your order is on the way.");
             }
             else {
                 holder.orderCardTracker.setText("Order placed. Will dispatch soon.");
             }
+            if(orderList.get(position).delivery.isDelivered) {
+                holder.orderCardTracker.setText("This order is delivered.");
+            }
         }
 
-        Picasso.Builder builder = new Picasso.Builder(context);
-        builder.downloader(new OkHttp3Downloader(context));
-        if(productList.get(position).imageUrl != null) {
-            builder.build().load(productList.get(position).imageUrl)
-                    .placeholder(R.drawable.ic_categories_nav)
-                    .error(R.drawable.ic_launcher_background)
-                    .into(holder.orderCardImage);
-        }
-        else {
-            builder.build().load("https://homepages.cae.wisc.edu/~ece533/images/fruits.png")
-                    .placeholder(R.drawable.ic_categories_nav)
-                    .error(R.drawable.ic_launcher_background)
-                    .into(holder.orderCardImage);
-        }
 
 
         holder.orderCardView.setOnClickListener(new View.OnClickListener() {

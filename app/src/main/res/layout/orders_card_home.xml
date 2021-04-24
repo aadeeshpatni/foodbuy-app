@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#0F575757"
     android:padding="3dp">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/order_card_home_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
         app:cardCornerRadius="4dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +53,8 @@
                 android:fontFamily="@font/exo_medium"
                 android:textColor="#38953B"
                 android:textSize="15sp"
-                app:layout_constraintBottom_toTopOf="@id/order_card_buyer_id"
+                android:text="Ordered quantity: "
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toEndOf="@id/order_card_home_image"
                 app:layout_constraintTop_toBottomOf="@id/order_card_home_name_text"
                 tools:text="Ordered quantity: " />
@@ -67,9 +67,12 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/exo_medium"
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="12sp"
+                android:text="Buyer: "
+                android:layout_marginTop="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/order_card_home_image"
+                app:layout_constraintTop_toBottomOf="@id/order_card_home_image"
+                app:layout_constraintStart_toStartOf="parent"
                 tools:text="buyer id comes here" />
 
             <LinearLayout
@@ -99,7 +102,8 @@
                     android:text="Deliver"
                     android:textSize="12sp"
                     android:paddingHorizontal="1dp"
-                    android:enabled="false"/>
+                    android:enabled="false"
+                    />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

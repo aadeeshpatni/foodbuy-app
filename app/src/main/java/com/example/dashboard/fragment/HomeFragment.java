@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,6 +38,7 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
     MaterialButton addProductButton;
     Button contactUsButton, storesNearYou, yourOrders;
+    TextView homeOrdersText;
 
     RecyclerView recyclerView;
     RecyclerViewHomeAdapter recyclerViewHomeAdapter;
@@ -53,10 +55,14 @@ public class HomeFragment extends Fragment {
         contactUsButton = getView().findViewById(R.id.contact_us);
         storesNearYou = getView().findViewById(R.id.stores_near_you);
         yourOrders = getView().findViewById(R.id.your_orders);
+        homeOrdersText = getView().findViewById(R.id.home_orders_text);
+        recyclerView = getView().findViewById(R.id.fragment_home_recycler_view);
 
         Preferences preferences = Preferences.getPreferences(getActivity().getApplicationContext());
         if(preferences.getCurrentUser().userType.equals("customer")) {
             addProductButton.setVisibility(View.GONE);
+            homeOrdersText.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
         }
         else if(preferences.getCurrentUser().userType.equals("wholesaler")) {
             storesNearYou.setVisibility(View.INVISIBLE);
@@ -140,7 +146,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void generateOrderList(List<OrderDetails> orderList, List<Product> productList) {
-        recyclerView = getView().findViewById(R.id.fragment_home_recycler_view);
+
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);

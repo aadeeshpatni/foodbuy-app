@@ -67,6 +67,7 @@ public class Product {
         this.addedQuantity = addedQuantity;
         this.unit = unit;
         this.sellerType = sellerType;
+        this.imageUrl = imageUrl;
         this.description = description;
         this.seller = seller;
     }
@@ -80,6 +81,7 @@ public class Product {
         this.sellerType = sellerType;
         this.description = description;
         this.seller = seller;
+        this.imageUrl = imageUrl;
     }
 
     public String toString() {

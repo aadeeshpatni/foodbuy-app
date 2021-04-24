@@ -108,6 +108,17 @@ public class RecyclerViewHomeAdapter extends RecyclerView.Adapter<RecyclerViewHo
                 updateOrder(false, true, orderList.get(position)._id, holder.dispatchButton, holder.deliverButton);
             }
         });
+
+        if(orderList.get(position).dispatch.isDispatched) {
+            holder.dispatchButton.setEnabled(false);
+            holder.deliverButton.setEnabled(true);
+            holder.deliverButton.setStrokeColorResource(R.color.colorPrimary);
+        }
+        if(orderList.get(position).delivery.isDelivered) {
+            holder.dispatchButton.setEnabled(false);
+            holder.deliverButton.setEnabled(false);
+            holder.deliverButton.setStrokeColorResource(R.color.browser_actions_bg_grey);
+        }
     }
 
     @Override
@@ -126,16 +137,18 @@ public class RecyclerViewHomeAdapter extends RecyclerView.Adapter<RecyclerViewHo
             public void onResponse(Call<OrderUpdateResponse> call, Response<OrderUpdateResponse> response) {
                 if(response.body().error) {
                     Log.e("HomeAdapter", "onResponse: " + response.body().message);
-                    Toast.makeText(context, "Error getting orders", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Error updating orders", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     if(markDelivered) {
                         deliveryButton.setEnabled(false);
+                        deliveryButton.setStrokeColorResource(R.color.browser_actions_bg_grey);
                         Toast.makeText(context, "Order delivered", Toast.LENGTH_SHORT).show();
                     }
                     if(markDispatched) {
                         dispatchButton.setEnabled(false);
                         deliveryButton.setEnabled(true);
+                        deliveryButton.setStrokeColorResource(R.color.colorPrimary);
                         Toast.makeText(context, "Order dispatched", Toast.LENGTH_SHORT).show();
                     }
                 }

@@ -28,7 +28,7 @@ public class OrderDetails {
     public OrderDispatchDetails dispatch;
 
     @SerializedName("delivery")
-    public OrderDispatchDetails delivery;
+    public OrderDeliveryDetails delivery;
 
     public OrderDetails(String buyerId,
                         String productId,
@@ -37,7 +37,7 @@ public class OrderDetails {
                         Long orderPlacedTimeInMillis,
                         Float cost,
                         OrderDispatchDetails dispatch,
-                        OrderDispatchDetails delivery) {
+                        OrderDeliveryDetails delivery) {
         this.buyerId = buyerId;
         this.productId = productId;
         this.sellerId = sellerId;
